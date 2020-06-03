@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>01. МАШ</key>
+	<array>
+		<string>01. Общее собрание акционеров/участников</string>
+		<string>02. Совет Директоров</string>
+		<string>03. Правление</string>
+		<string>04. Производственный комитет</string>
+		<string>05. Расширенный производственный комитет</string>
+		<string>06. Финансовый комитет</string>
+		<string>07. Тендерный комитет</string>
+		<string>08. Комитет главного инженера</string>
+		<string>09. Комитет по корпоративномуразвитию</string>
+	</array>
+	<key>02. VIP</key>
+	<array>
+		<string>01. Общее собрание акционеров/участников</string>
+		<string>02. Совет Директоров</string>
+		<string>03. Правление</string>
+		<string>04. Комитет по производству</string>
+	</array>
+	<key>03. Duty Free</key>
+	<array>
+		<string>01. Общее собрание акционеров/участников</string>
+		<string>02. Совет Директоров</string>
+		<string>03. Правление</string>
+		<string>04. Комитет по производству</string>
+	</array>
+	<key>04. Москва Карго</key>
+	<array>
+		<string>01. Общее собрание акционеров/участников</string>
+		<string>02. Совет Директоров</string>
+		<string>03. Правление</string>
+		<string>04. Комитет по производству</string>
+	</array>
+	<key>05. Паркинг</key>
+	<array>
+		<string>01. Общее собрание акционеров/участников</string>
+		<string>02. Совет Директоров</string>
+		<string>03. Правление</string>
+		<string>04. Производственный комитет</string>
+	</array>
+	<key>06. Авиатопливо</key>
+	<array>
+		<string>01. Общее собрание акционеров/участников</string>
+		<string>02. Совет Директоров</string>
+		<string>03. Правление</string>
+	</array>
+	<key>07. Реклама</key>
+	<array>
+		<string>01. Общее собрание акционеров/участников</string>
+		<string>02. Совет Директоров</string>
+		<string>03. Правление</string>
+		<string>04. Финансовый комитет</string>
+	</array>
+	<key>08. Безопасность</key>
+	<array>
+		<string>01. Общее собрание акционеров/участников</string>
+		<string>02. Совет Директоров</string>
+		<string>03. Правление</string>
+		<string>04. Финансовый комитет</string>
+	</array>
+	<key>09. Хендлинг</key>
+	<array>
+		<string>01. Общее собрание акционеров/участников</string>
+		<string>02. Совет Директоров</string>
+		<string>03. Правление</string>
+		<string>04. Производственный комитет</string>
+	</array>
+</dict>
+</plist>
