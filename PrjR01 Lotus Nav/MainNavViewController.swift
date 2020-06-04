@@ -101,6 +101,8 @@ class MainNavViewController: UITableViewController {
         if !mainMenu[indexPath.row].isSection{
             rootVC.title = "\(mainMenu[indexPath.row].tag)"
             switch mainMenu[indexPath.row].tag {
+                case 0:
+                        performSegue(withIdentifier: "UnderContructionSegue", sender: nil)
                 case 2:
                     UIApplication.shared.open(NSURL(string: "calshow://")! as URL)
                 case 3:
@@ -214,5 +216,5 @@ class MainNavViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func cancelAction(_ segue: UIStoryboardSegue){}
 }

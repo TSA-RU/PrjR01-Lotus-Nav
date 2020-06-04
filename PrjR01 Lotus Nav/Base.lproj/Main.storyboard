@@ -43,7 +43,7 @@
                                     <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Tnw-jY-fy2" kind="show" id="KKB-Kt-7fv"/>
+                                    <segue destination="WPu-aP-bhp" kind="presentation" modalPresentationStyle="fullScreen" id="KKB-Kt-7fv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -71,7 +71,7 @@
             </objects>
             <point key="canvasLocation" x="10" y="-175"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Lotus Nav-->
         <scene sceneID="7CU-yE-owE">
             <objects>
                 <tableViewController id="3KR-qN-ymI" customClass="MainNavViewController" customModule="Lotus_Nav" customModuleProvider="target" sceneMemberID="viewController">
@@ -94,15 +94,23 @@
                             <outlet property="delegate" destination="3KR-qN-ymI" id="cxI-Yl-DEA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="yd7-9W-gTL"/>
+                    <navigationItem key="navigationItem" title="Lotus Nav" id="yd7-9W-gTL">
+                        <barButtonItem key="leftBarButtonItem" title="Выход" image="arrowshape.turn.up.left" catalog="system" id="L4q-75-NKX">
+                            <connections>
+                                <segue destination="edE-dE-X2S" kind="unwind" unwindAction="cancelAction:" id="569-5J-ywF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZyU-se-Cd7"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="rootVC" destination="yd7-9W-gTL" id="Vff-p0-b9O"/>
-                        <segue destination="fvK-Gn-PbS" kind="show" identifier="UnderConstructionSegue" id="xVW-gc-IG9"/>
+                        <segue destination="zoZ-xJ-hl1" kind="presentation" identifier="UnderContructionSegue" modalPresentationStyle="fullScreen" id="Ic3-Fd-tGj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ei0-3h-oQq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="edE-dE-X2S" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="688.40579710144937" y="507.58928571428567"/>
+            <point key="canvasLocation" x="783" y="508"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="al4-jY-eAm">
@@ -112,6 +120,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C1r-yY-zRn">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="25"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="24"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="3KR-qN-ymI" kind="relationship" relationship="rootViewController" id="hFh-X4-M2B"/>
@@ -126,27 +140,76 @@
             <objects>
                 <viewController id="Tnw-jY-fy2" customClass="TestViewController" customModule="Lotus_Nav" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2tq-3C-W9s">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BbA-fh-dme">
+                                <rect key="frame" x="0.0" y="158" width="414" height="704"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TestCell" textLabel="mRm-gw-dsn" detailTextLabel="fdR-MX-J0C" style="IBUITableViewCellStyleValue1" id="Z7m-zR-Sxv">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z7m-zR-Sxv" id="8a8-SH-Ydk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mRm-gw-dsn">
+                                                    <rect key="frame" x="20" y="12" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fdR-MX-J0C">
+                                                    <rect key="frame" x="350" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Tnw-jY-fy2" id="mJU-oe-YgP"/>
+                                    <outlet property="delegate" destination="Tnw-jY-fy2" id="Urs-1q-Tgi"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="BbA-fh-dme" firstAttribute="top" secondItem="cmR-Y5-6C1" secondAttribute="top" constant="70" id="LAA-N6-wm6"/>
+                            <constraint firstItem="cmR-Y5-6C1" firstAttribute="bottom" secondItem="BbA-fh-dme" secondAttribute="bottom" id="Sag-Jo-ZpU"/>
+                            <constraint firstItem="cmR-Y5-6C1" firstAttribute="trailing" secondItem="BbA-fh-dme" secondAttribute="trailing" id="Ybw-Nx-ckW"/>
+                            <constraint firstItem="BbA-fh-dme" firstAttribute="leading" secondItem="cmR-Y5-6C1" secondAttribute="leading" id="c2L-It-MAx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cmR-Y5-6C1"/>
                     </view>
-                    <navigationItem key="navigationItem" id="UtS-Bk-oHn"/>
+                    <navigationItem key="navigationItem" id="UtS-Bk-oHn">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" image="arrowshape.turn.up.left" catalog="system" id="qaX-kW-x6a">
+                            <connections>
+                                <segue destination="VSH-8H-9db" kind="unwind" unwindAction="cancelAction:" id="tqq-tP-Mta"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wg-7q-7Bh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="VSH-8H-9db" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="688" y="-175"/>
+            <point key="canvasLocation" x="1597.1014492753625" y="-175.44642857142856"/>
         </scene>
         <!--В разработке-->
         <scene sceneID="Js0-OF-efa">
             <objects>
-                <viewController id="fvK-Gn-PbS" customClass="UnderConstructionViewController" customModule="Lotus_Nav" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="fvK-Gn-PbS" customClass="UnderConstructionViewController" customModule="Lotus_Nav" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kiN-sM-q0B">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пока не работает" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxb-xJ-IAm">
-                                <rect key="frame" x="66" y="412.5" width="282" height="39.5"/>
+                                <rect key="frame" x="66" y="455.5" width="282" height="39.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -159,14 +222,60 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LXW-u4-bJ8"/>
                     </view>
-                    <navigationItem key="navigationItem" title="В разработке" id="Yfo-5r-zOg"/>
+                    <navigationItem key="navigationItem" title="В разработке" id="Yfo-5r-zOg">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="gdP-yQ-teh"/>
+                        <barButtonItem key="leftBarButtonItem" title="Назад" image="arrowshape.turn.up.left" catalog="system" id="Dwi-Zg-upl">
+                            <connections>
+                                <segue destination="Qs4-nJ-Ial" kind="unwind" unwindAction="cancelAction:" id="ZQe-uK-GWZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xZ-yS-Jvy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Qs4-nJ-Ial" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1371" y="-175"/>
+            <point key="canvasLocation" x="2409" y="508"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aLr-Au-wuR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" id="WPu-aP-bhp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="dYv-Xh-xGl"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kE2-86-hII">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Tnw-jY-fy2" kind="relationship" relationship="rootViewController" id="5mQ-vh-AbO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Qh-es-vGg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="783" y="-175"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TgY-AR-U4f">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zoZ-xJ-hl1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IXt-2y-eDu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fvK-Gn-PbS" kind="relationship" relationship="rootViewController" id="miA-Ct-IUf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUo-R9-2RU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1595.6521739130435" y="507.58928571428567"/>
         </scene>
     </scenes>
     <resources>
         <image name="IBM_Notes_9_logo" width="1024" height="1024"/>
+        <image name="arrowshape.turn.up.left" catalog="system" width="128" height="106"/>
     </resources>
 </document>
