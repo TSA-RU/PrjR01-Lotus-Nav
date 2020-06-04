@@ -10,39 +10,59 @@ import UIKit
 
 class MainNavViewController: UITableViewController {
 
-    var divider = 2
-    var colapse = false
+//    var divider = 2
+//    var colapse = false
+    
+    let levelIdent = 1 //Отступ следующего уровня
+    let expandedChar = "-"
+    let collapsedChar = "+"
+    let collapseOther = true //Схлопывать не активные уровни
+    let maxLevels = 8
     
     struct menuItem {
-        var id: Int
+        var id: Int = 0
+        var level: Int = 0
+        var parent: Int = 0
         var title: String
         var isSection: Bool
-        var expanded: Bool
+        var expanded: Bool = false
         var visible: Bool
         var color: UIColor
-        var changed: Bool
+        var changed: Bool = false
         var tag: Int
     }
     
     var mainMenu = [
-        menuItem(id: 10000, title: "Календарь", isSection: true, expanded: false, visible: true, color: .systemGray3, changed: false, tag: 0),
-        menuItem(id: 10100, title: "Личный", isSection: false, expanded: false, visible: false, color: .white, changed: false, tag: 2),
-        menuItem(id: 10200, title: "Копоративный", isSection: false, expanded: false, visible: false, color: .white, changed: false, tag: 0),
-        menuItem(id: 20000, title: "Персонал", isSection: true, expanded: false, visible: true, color: .systemGray3, changed: false, tag: 0),
-        menuItem(id: 20100, title: "SubMenu 2.1", isSection: true, expanded: false, visible: false, color: .systemGray5, changed: false, tag: 0),
-        menuItem(id: 20101, title: "Item 2.1.1", isSection: false, expanded: false, visible: false, color: .white, changed: false, tag: 0),
-        menuItem(id: 20102, title: "Item 2.1.2", isSection: false, expanded: false, visible: false, color: .white, changed: false, tag: 0),
-        menuItem(id: 20103, title: "Item 2.1.3", isSection: false, expanded: false, visible: false, color: .white, changed: false, tag: 0),
-        menuItem(id: 20104, title: "Item 2.1.4", isSection: false, expanded: false, visible: false, color: .white, changed: false, tag: 0),
-        menuItem(id: 20200, title: "SubMenu 2.2", isSection: true, expanded: false, visible: false, color: .systemGray5, changed: false, tag: 0),
-        menuItem(id: 30000, title: "Финансы", isSection: true, expanded: false, visible: true, color: .systemGray3, changed: false, tag: 0),
-        menuItem(id: 40000, title: "Поручения", isSection: true, expanded: false, visible: true, color: .systemGray3, changed: false, tag: 0),
-        menuItem(id: 50000, title: "Администрирование", isSection: true, expanded: false, visible: true, color: .systemGray3, changed: false, tag: 0),
-        menuItem(id: 50100, title: "SubMenu 2.2", isSection: true, expanded: false, visible: false, color: .systemGray5, changed: false, tag: 0),
-        menuItem(id: 60000, title: "Проекты", isSection: true, expanded: false, visible: true, color: .systemGray3, changed: false, tag: 0),
-        menuItem(id: 70000, title: "Коммуникации", isSection: true, expanded: false, visible: true, color: .systemGray3, changed: false, tag: 0),
-        menuItem(id: 70100, title: "Почта", isSection: false, expanded: false, visible: false, color: .white, changed: false, tag: 3),
-        menuItem(id: 70200, title: "Корреспонденция", isSection: false, expanded: false, visible: false, color: .white, changed: false, tag: 0)
+        menuItem(id: 1, title: "Календарь", isSection: true, expanded: true, visible: true, color: .systemGray3, tag: 0),
+        menuItem(level: 1, parent: 1, title: "Личный", isSection: false, expanded: false, visible: true, color: .white, tag: 2),
+        menuItem(level: 1, parent: 1, title: "Копоративный", isSection: false, expanded: false, visible: true, color: .white,  tag: 0),
+        menuItem(id: 2, title: "Персонал", isSection: true, expanded: false, visible: true, color: .systemGray3,  tag: 0),
+        menuItem(id: 21, level: 1, parent: 2, title: "SubMenu 2.1", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(level: 2, parent: 21, title: "Item 2.1.1", isSection: false, expanded: false, visible: false, color: .white,  tag: 0),
+        menuItem(level: 2, parent: 21, title: "Item 2.1.2", isSection: false, expanded: false, visible: false, color: .white,  tag: 0),
+        menuItem(level: 2, parent: 21, title: "Item 2.1.3", isSection: false, expanded: false, visible: false, color: .white,  tag: 0),
+        menuItem(level: 2, parent: 21, title: "Item 2.1.4", isSection: false, expanded: false, visible: false, color: .white,  tag: 0),
+        menuItem(id: 22, level: 1, parent: 2, title: "SubMenu 2.2", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 23, level: 1, parent: 2, title: "SubMenu 2.3", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 231, level: 2, parent: 23, title: "SubMenu 2.3.1", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 2311, level: 3, parent: 231, title: "SubMenu 2.3.1.1", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 23111, level: 4, parent: 2311, title: "SubMenu 2.3.1.1.1", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 231111, level: 5, parent: 23111, title: "SubMenu 2.3.1.1.1.1", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 2311111, level: 6, parent: 231111, title: "SubMenu 2.3.1.1.1.1.1", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 23111111, level: 7, parent: 2311111, title: "SubMenu 2.3.1.1.1.1.1.1", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(level: 8, parent: 23111111, title: "Item 2.1.1.1.1.1.1.1", isSection: false, expanded: false, visible: false, color: .white,  tag: 0),
+        menuItem(id: 23112, level: 4, parent: 2311, title: "SubMenu 2.3.1.1.2", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 2312, level: 3, parent: 231, title: "SubMenu 2.3.1.2", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 2313, level: 3, parent: 231, title: "SubMenu 2.3.1.3", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 232, level: 2, parent: 23, title: "SubMenu 2.3.2", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 3, title: "Финансы", isSection: true, expanded: false, visible: true, color: .systemGray3,  tag: 0),
+        menuItem(id: 4, title: "Поручения", isSection: true, expanded: false, visible: true, color: .systemGray3, tag: 0),
+        menuItem(id: 5, title: "Администрирование", isSection: true, expanded: false, visible: true, color: .systemGray3, tag: 0),
+        menuItem(id: 5, title: "SubMenu 2.2", isSection: true, expanded: false, visible: false, color: .systemGray5, tag: 0),
+        menuItem(id: 6, title: "Проекты", isSection: true, expanded: false, visible: true, color: .systemGray3,  tag: 0),
+        menuItem(id: 7, title: "Коммуникации", isSection: true, expanded: false, visible: true, color: .systemGray3, tag: 0),
+        menuItem(level: 1, parent: 7, title: "Почта", isSection: false, expanded: false, visible: false, color: .white, tag: 3),
+        menuItem(level: 1, parent: 7, title: "Корреспонденция", isSection: false, expanded: false, visible: false, color: .white, tag: 0)
         ]
     
     @IBOutlet weak var rootVC: UINavigationItem!
@@ -57,14 +77,7 @@ class MainNavViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    @IBAction func colapseBtn(_ sender: UIBarButtonItem) {
-        colapse = !colapse
-        tableView.beginUpdates()
-        for row in 0..<mainMenu.count {
-            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
-        }
-        tableView.endUpdates()
-    }
+
     
     // MARK: - Table view data source
 
@@ -82,16 +95,47 @@ class MainNavViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         var prefix = ""
-        if mainMenu[indexPath.row].isSection && mainMenu[indexPath.row].expanded {prefix = "- "}
-        if mainMenu[indexPath.row].isSection && !mainMenu[indexPath.row].expanded {prefix = "+ "}
+        if mainMenu[indexPath.row].isSection && mainMenu[indexPath.row].expanded {prefix = expandedChar}
+        if mainMenu[indexPath.row].isSection && !mainMenu[indexPath.row].expanded {prefix = collapsedChar}
         cell?.textLabel?.text = prefix + mainMenu[indexPath.row].title
         cell?.backgroundColor = mainMenu[indexPath.row].color
         return cell!
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if mainMenu[indexPath.row].visible || colapse {return 44}
+        if mainMenu[indexPath.row].visible {return 44}
         else {return 0}
+    }
+    
+    func collapseCells(cellNum: Int, collapse: Bool){
+        if mainMenu[cellNum].expanded || collapse {
+            for row in 0..<mainMenu.count{
+                if mainMenu[row].parent == mainMenu[cellNum].id {
+                    mainMenu[row].visible = false
+                    mainMenu[row].changed = true
+                    if mainMenu[row].isSection {
+                        collapseCells(cellNum: row, collapse: true)
+                    }
+                }
+                mainMenu[cellNum].expanded = false
+                mainMenu[cellNum].changed = true
+            }
+        }
+        else{
+            for row in 0..<mainMenu.count{
+                if mainMenu[row].parent == mainMenu[cellNum].id{
+                    mainMenu[row].visible = true
+                    mainMenu[row].changed = true
+                    
+                }
+                if collapseOther && (mainMenu[row].level == mainMenu[cellNum].level) && (row != cellNum) && (mainMenu[row].isSection) &&  mainMenu[row].expanded {
+                    collapseCells(cellNum: row, collapse: true)
+                }
+                mainMenu[cellNum].expanded = true
+                mainMenu[cellNum].changed = true
+            }
+            
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -112,11 +156,14 @@ class MainNavViewController: UITableViewController {
             return
         }
         else {
-            let mask = mainMenu[indexPath.row].id
+            collapseCells(cellNum: indexPath.row, collapse: mainMenu[indexPath.row].expanded)
+            
+            
+/*            let mask = mainMenu[indexPath.row].id
             let mask1 = mask / 10000
             let mask2 = (mask - mask1 * 10000) / 100
             let mask3 = mask % 100
-//            rootVC.title = "m:\(mask), m1:\(mask1), m2:\(mask2), m3:\(mask3)"
+
             mainMenu[indexPath.row].expanded = !mainMenu[indexPath.row].expanded
             mainMenu[indexPath.row].changed = true
             
@@ -125,8 +172,7 @@ class MainNavViewController: UITableViewController {
                 let subMask1 = subMask / 10000
                 let subMask2 = (subMask - subMask1 * 10000) / 100
                 let subMask3 = subMask % 100
-//                print("m:\(subMask), m1:\(subMask1), m2:\(subMask2), m3:\(subMask3)")
-                
+             
                 //   It's 1st Level?                It's 2 SubLevel?                   It's equal?
                 if (mask2 == 0 && mask3 == 0) && (subMask3 == 0 && subMask2 != 0) && (mask1 == subMask1){
                     if mainMenu[row].isSection {mainMenu[row].expanded = false}
@@ -148,7 +194,7 @@ class MainNavViewController: UITableViewController {
                 }
                 
                 
-            }
+            }*/
             
             
 
@@ -166,9 +212,10 @@ class MainNavViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         var ress = 0
-        if mainMenu[indexPath.row].isSection && (mainMenu[indexPath.row].id % 10000) == 0 {ress =  0}
+/*        if mainMenu[indexPath.row].isSection && (mainMenu[indexPath.row].id % 10000) == 0 {ress =  0}
         else {ress =  1}
-        if !mainMenu[indexPath.row].isSection {ress = 2}
+        if !mainMenu[indexPath.row].isSection {ress = 2}*/
+        ress = levelIdent * mainMenu[indexPath.row].level
         return ress
     }
 
